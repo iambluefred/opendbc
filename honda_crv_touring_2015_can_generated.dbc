@@ -233,6 +233,7 @@ BO_ 768 NIDEC_COMMAND_1: 8 ADAS
  SG_ BYTE4_A : 31|8@0+ (1,0) [0|255] "" EON
  SG_ BYTE5_A : 39|8@0+ (1,0) [0|255] "" EON
  SG_ BYTE6_A : 47|8@0+ (1,0) [0|255] "" EON
+ SG_ BYTE7_A : 55|8@0+ (1,0) [0|255] "" EON
  SG_ CHECKSUM : 59|4@0+ (1,0) [0|3] "" EON
  SG_ COUNTER : 61|2@0+ (1,0) [0|3] "" EON
 
@@ -243,6 +244,7 @@ BO_ 769 NIDEC_COMMAND_2: 8 ADAS
  SG_ BYTE4_B : 31|8@0+ (1,0) [0|255] "" EON
  SG_ BYTE5_B : 39|8@0+ (1,0) [0|255] "" EON
  SG_ BYTE6_B : 47|8@0+ (1,0) [0|255] "" EON
+ SG_ BYTE7_B : 55|8@0+ (1,0) [0|255] "" EON
  SG_ CHECKSUM : 59|4@0+ (1,0) [0|3] "" EON
  SG_ COUNTER : 61|2@0+ (1,0) [0|3] "" EON
 
