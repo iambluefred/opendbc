@@ -11,6 +11,12 @@ def test_generator():
 
     ignore = [f for f in os.listdir(opendbc_root) if not f.endswith('_generated.dbc')]
     comp = filecmp.dircmp(opendbc_root, d, ignore=ignore)
-    assert len(comp.diff_files) == 0, f"Different files: {comp.diff_files}"
 
-test_generator()
+    err = "Generated DBC mismatch\n\n"
+    err += f"Different files: {comp.diff_files}\n\n"
+    err += "Run opendbc/generator/generator.py to regenerate DBC files."
+    assert len(comp.diff_files) == 0, err
+
+
+if __name__ == "__main__":
+  test_generator()
