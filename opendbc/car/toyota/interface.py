@@ -190,6 +190,8 @@ class CarInterface(CarInterfaceBase):
     if candidate == CAR.TOYOTA_PRIUS_C:
       stock_cp.openpilotLongitudinalControl = True
       stock_cp.alphaLongitudinalAvailable = False
+      # same as 0.11.1-priusc (dragonpilot): autoResumeSng = openpilotLongitudinalControl
+      stock_cp.autoResumeSng = True
 
     ret.enableGasInterceptor = 0x201 in fingerprint[0] and stock_cp.openpilotLongitudinalControl and \
                                not stock_cp.flags & ToyotaFlags.SECOC
