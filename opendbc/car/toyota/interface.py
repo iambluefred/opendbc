@@ -113,6 +113,9 @@ class CarInterface(CarInterfaceBase):
 
     # min speed to enable ACC. if car can do stop and go, then set enabling speed
     # to a negative value, so it won't matter.
+    # Prius c: no factory ACC means no low speed engage limit to respect
+    if candidate == CAR.TOYOTA_PRIUS_C:
+      stop_and_go = True
     ret.minEnableSpeed = -1. if stop_and_go else MIN_ACC_SPEED
 
     if ret.flags & ToyotaFlags.TSS2:
@@ -180,6 +183,13 @@ class CarInterface(CarInterfaceBase):
     stock_cp.openpilotLongitudinalControl = use_sdsu or \
       candidate in (TSS2_CAR - RADAR_ACC_CAR) or \
       bool(stock_cp.flags & ToyotaFlags.DISABLE_RADAR)
+
+    # Prius c has no factory ACC at all, so there is no stock longitudinal to
+    # defer to: openpilot always does long (keeps Experimental Mode available).
+    # Set before the gas interceptor check so a 0x201 interceptor still works.
+    if candidate == CAR.TOYOTA_PRIUS_C:
+      stock_cp.openpilotLongitudinalControl = True
+      stock_cp.alphaLongitudinalAvailable = False
 
     ret.enableGasInterceptor = 0x201 in fingerprint[0] and stock_cp.openpilotLongitudinalControl and \
                                not stock_cp.flags & ToyotaFlags.SECOC
